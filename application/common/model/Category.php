@@ -6,16 +6,20 @@ class Category extends Model{
 
     protected $autoWriteTimestamp = true;
 
-    public function get_list(){
+    /**
+     * 分类栏目获取一级分类和二级分类
+     * $parent_id为0时，是一级分类
+     */
+    public function get_list($parent_id = 0){
         $where = [
-          'parent_id' => 0,
+          'parent_id' => $parent_id,
           'status' => ['neq',-1]
         ];
         $order = [
             'id' => 'desc'
         ];
 
-        $result = $this->where($where)->order($order)->select();
+        $result = $this->where($where)->order($order)->paginate();
         return $result;
     }
 
@@ -32,7 +36,7 @@ class Category extends Model{
     }
 
     /**
-     * 分类栏目获取一级分类
+     * 点击添加分类下的分类栏目获取一级分类
      */
     public function get_first_category_list(){
         $where = [

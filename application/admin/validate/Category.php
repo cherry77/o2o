@@ -10,4 +10,9 @@ class Category extends Validate{
         ['status','number|in:-1,0,1','状态必须是数字|状态范围不合法'],
         ['listorder','number']
     ];
+
+    //场景设置
+    protected $scene = [
+        'add' => ['name','parent_id','id'],
+    ];
 }
