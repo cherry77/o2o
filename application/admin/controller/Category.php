@@ -39,7 +39,7 @@ class Category extends Controller{
         }
 //        如果传过来的数据有id,说明进行的是修改操作
         if(!empty($data['id'])){
-            return $this->mdl->update($data);
+            return $this->update($data);
         }
         //把$data提交model层
         $result = $this->mdl->add($data);
@@ -68,6 +68,17 @@ class Category extends Controller{
         }else{
             $this->error('更新失败');
         }
+    }
+    /**
+     * 排序
+     */
+        public function listorder($id,$listorder){
+          $result = $this->mdl->save(['listorder'=>$listorder],['id'=>$id]);
+          if($result){
+              $this->result($_SERVER['HTTP_REFERER'],1,'success');
+          }else{
+              $this->result($_SERVER['HTTP_REFERER'],0,'更新失败');
+          }
     }
 
 }
