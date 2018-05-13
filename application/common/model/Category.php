@@ -16,6 +16,7 @@ class Category extends Model{
           'status' => ['neq',-1]
         ];
         $order = [
+            'listorder' => 'desc',
             'id' => 'desc'
         ];
 
@@ -49,5 +50,7 @@ class Category extends Model{
 
         return $this->where($where)->order($order)->select();
     }
+
+
 
 }
