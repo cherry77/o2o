@@ -72,13 +72,31 @@ class Category extends Controller{
     /**
      * 排序
      */
-        public function listorder($id,$listorder){
-          $result = $this->mdl->save(['listorder'=>$listorder],['id'=>$id]);
-          if($result){
-              $this->result($_SERVER['HTTP_REFERER'],1,'success');
-          }else{
-              $this->result($_SERVER['HTTP_REFERER'],0,'更新失败');
-          }
+    public function listorder($id,$listorder){
+            $result = $this->mdl->save(['listorder'=>$listorder],['id'=>$id]);
+            if($result){
+                $this->result($_SERVER['HTTP_REFERER'],1,'success');
+            }else{
+                $this->result($_SERVER['HTTP_REFERER'],0,'更新失败');
+            }
+    }
+
+    /**
+     * 修改状态 -1 删除 0 待审  1 正常
+     */
+
+    public function change_status(){
+        $data = input('get.');
+        $validate = Validate('Category');
+        if(!$validate->scene('change_status')->check($data)){
+            $this->error($validate->getError());
+        }
+        $result = $this->mdl->save(['status'=>$data['status']],['id'=>$data['id']]);
+        if($result){
+            $this->result($_SERVER['HTTP_REFERER'],1,'修改成功','json');
+        }else{
+            $this->result($_SERVER['HTTP_REFERER'],-1,'修改失败','json');
+        }
     }
 
 }
