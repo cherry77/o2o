@@ -14,5 +14,7 @@ class Category extends Validate{
     //场景设置
     protected $scene = [
         'add' => ['name','parent_id','id'],
+        'listorder' =>['id','listorder'],
+        'change_status' => ['id','status'],
     ];
 }
