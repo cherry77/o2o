@@ -41,21 +41,7 @@
 <script>
 	var $scope = {
 	    'listorder_url':"{:url('category/listorder')}",
-		'status_url':"{:url('category/change_status')}",
 	};
-
-    $url = $scope.status_url;
-	function change_status(){
-	    $.post($url,'',function(result){
-            if(result.code == 1){
-                //如果成功，就刷新页面
-                location.href = result.data;
-                layer.alert(result.msg);
-            }else{
-                alert(result.msg);
-            }
-		});
-	}
 </script>
 </body>
 </html>
