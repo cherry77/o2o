@@ -93,9 +93,9 @@ class Category extends Controller{
         }
         $result = $this->mdl->save(['status'=>$data['status']],['id'=>$data['id']]);
         if($result){
-            $this->result($_SERVER['HTTP_REFERER'],1,'修改成功','json');
+            $this->success('修改成功');
         }else{
-            $this->result($_SERVER['HTTP_REFERER'],-1,'修改失败','json');
+            $this->error('修改失败');
         }
     }
 
