@@ -41,6 +41,42 @@ $('.listorder input').blur(function(){
         }
     },"json");
 });
+//所属城市
+$('.cityId').change(function(){
+    city_id = $(this).val();
+    post_data = {'id':city_id};
+    url = SCOPE.city_url;
+    $.post(url,post_data,function(ret){
+        if(ret.status == 1){
+            //将信息填充到html
+            city_html = "";
+            $(ret.data.data).each(function(i){
+                city_html += "<option value="+this.id+">"+this.name+"</option>";
+            });
+            $('.se_city_id').html(city_html);
+        }else if(!ret.data.data){
+            $('.se_category_id').html('');
+        }
+    },'json');
+});
+//所属分类
+$('.categoryId').change(function(){
+    category_id = $(this).val();
+    post_data = {'id':category_id};
+    url = SCOPE.category_url;
+    $.post(url,post_data,function(ret){
+        if(ret.status == 1){
+            //将信息填充到html
+            category_html = "";
+            $(ret.data.data).each(function(i){
+                category_html += "<input type='checkbox' name='category-box' id="+this.id+"/>"+this.name;
+            });
+            $('.se_category_id').html(category_html);
+        }else if(!ret.data.data){
+            $('.se_category_id').html('');
+        }
+    },'json');
+});
 
 
 
