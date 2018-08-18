@@ -42,3 +42,16 @@ function doCurl($url,$type,$data =[]){
 /*tp5中调用一些类的静态方法前面加\
 这个作用是摆脱当前命名空间的影响  从根目录去寻找你要用的类  不加的话会从当前的命名空间开始寻找  可能找不到你要用的类*/
 
+function bisRegister($status){
+    if($status == 1) {
+        $str = "入驻申请成功";
+    }elseif($status == 0) {
+        $str = "待审核，审核后平台方会发送邮件通知，请关注邮件";
+
+    }elseif($status == 2) {
+        $str = "非常抱歉，您提交的材料不符合条件，请重新提交";
+    }else {
+        $str = "该申请已被删除";
+    }
+    return $str;
+}
