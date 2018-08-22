@@ -16,7 +16,7 @@ function status($status){
     }elseif ($status == 0){
         $str = "<span class='label label-danger radius'>待审</span>";
     }else{
-        $str = "<span class='label label-success radius'>删除</span>";
+        $str = "<span class='label label-danger radius'>删除</span>";
     }
     return $str;
 }
@@ -54,4 +54,37 @@ function bisRegister($status){
         $str = "该申请已被删除";
     }
     return $str;
+}
+
+/**
+ * 分页封装
+ * @param $obj
+ * @return string
+ */
+function pagination($obj){
+    if(!$obj){
+        return '';
+    }
+    return '<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">'.$obj->render().'</div>';
+}
+
+function getSeCityName($path){
+    if(!$path){
+        return '';
+    }
+    if(preg_match('/,/',$path)){
+        $cityPath = explode(',',$path);
+        $cityId = $cityPath[1];
+    }else{
+        $cityId = $path;
+    }
+    $city = model('City')->get($cityId);
+    return $city->name;
+}
+function getSeCategory($path){
+    if(!$path){
+        return '';
+    }
+    $category = model('Category')->get($path);
+    print_r($category);exit;
 }

@@ -35,7 +35,8 @@
 	</div>
 </div>
 <!--分页-->
-<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">{$category_list->render()}</div>
+{:pagination($category_list)}
+<!--<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">{$category_list->render()}</div>-->
 <!--包含头部文件-->
 {include file="public/footer" /}
 <script>

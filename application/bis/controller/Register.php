@@ -37,7 +37,7 @@ class Register extends Controller{
         $bis_data = [
             'name' => $data['name'],
             'city_id' => $data['city_id'],
-            'city_path' => empty($data['se_city_id'])?$data['city_id']:$data['city_id'].$data['se_city_id'],
+            'city_path' => empty($data['se_city_id']) ? $data['city_id'] : $data['city_id'].','.$data['se_city_id'],
             'logo' => $data['logo'],
             'licence_logo' => $data['licence_logo'] ,
             'description' => isset($data['description'])?$data['description']:'',
